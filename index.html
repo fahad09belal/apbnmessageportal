@@ -134,7 +134,6 @@
     .workspace{flex:1;min-height:0;display:flex;background:#fff;overflow:hidden;position:relative}
     .sidebar{width:230px;flex:0 0 230px;background:linear-gradient(90deg,#eaf3fc,#d8e8f8);border-right:1px solid #9cafc3;padding:9px;display:flex;flex-direction:column;overflow-y:auto;position:relative}
 
-    /* Mobile toggle button inside toolbar */
     .mobile-profile-toggle {
       display: none;
       width: 28px;
@@ -164,7 +163,6 @@
       box-shadow:0 0 6px rgba(39,123,221,0.3);
     }
 
-    /* AVATAR & STATUS BADGE CONTAINER */
     .avatar-container {
       position: relative;
       display: inline-block;
@@ -174,7 +172,6 @@
     .msg-avatar{width:36px;height:36px;border-radius:4px;border:1px solid #9aaabc;object-fit:cover;cursor:pointer;display:block;}
     .popover-avatar{width:50px;height:50px;border-radius:4px;border:1px solid #7d96af;object-fit:cover;background:#fff;display:block;}
 
-    /* STATUS BADGE OVERLAY */
     .status-badge {
       position: absolute;
       bottom: -3px;
@@ -196,7 +193,6 @@
     .profile-subname{font-size:10px;color:#5a6e85;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
     .profile-state{font-size:11px;color:#2b7a3b;margin-top:2px;display:flex;align-items:center;gap:4px}
 
-    /* STATUS SELECTOR DROPDOWN */
     .status-select-wrap {
       margin-top: 4px;
       display: flex;
@@ -265,7 +261,6 @@
 
     .time{font-size:10px;color:#7a8794}.body{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;color:#1b1b1b}.deleted-text{font-style:italic;color:#7b8793}.mention{color:#065db3;font-weight:bold}.reply-line{font-size:10px;color:#667787;border-left:2px solid #8fb5dc;padding-left:7px;margin-bottom:5px}.msg-tools{display:flex;justify-content:flex-end;gap:5px;margin-top:5px}.tiny{border:1px solid #9aaabd;background:linear-gradient(#fff,#e3eaf1);color:#2a4056;border-radius:2px;padding:3px 7px;font-size:10px}.tiny:hover{background:#dcecff}
     
-    /* EMBEDDED IMAGES / GIFS / MYINSTANTS STYLING */
     .chat-embed-image {
       max-width: min(320px, 100%);
       max-height: 280px;
@@ -287,22 +282,20 @@
       overflow: hidden;
     }
 
-    /* EMBEDDED MEDIA (YOUTUBE / SPOTIFY) */
-	.chat-embed-media {
-	display: block;
-	margin-top: 6px;
-	max-width: min(480px, 100%);
-	width: 100%;
-	border-radius: 6px;
-	border: 1px solid #b2c4d6;
-	box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-	}
+    .chat-embed-media {
+      display: block;
+      margin-top: 6px;
+      max-width: min(480px, 100%);
+      width: 100%;
+      border-radius: 6px;
+      border: 1px solid #b2c4d6;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
 
-	iframe[src*="spotify.com/embed"] {
-	height: 152px !important;
-	}
+    iframe[src*="spotify.com/embed"] {
+      height: 152px !important;
+    }
 
-    /* MSN ENGRAVED DOWNLOAD BUTTON STYLING */
     .msn-engraved-btn {
       display: inline-flex;
       align-items: center;
@@ -314,20 +307,16 @@
       font-weight: bold;
       color: #38597a;
       text-decoration: none;
-      
       background: 
         linear-gradient(180deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.1) 48%, rgba(200, 222, 245, 0.3) 50%, rgba(220, 235, 250, 0.6) 100%),
         linear-gradient(135deg, #ffffff 0%, #ffffff 45%, #dcebfa 46%, #bad3ed 100%);
-
       border: 1px solid #7c9dc2;
       border-top-color: #6183a9;
       border-left-color: #6183a9;
       border-radius: 4px;
-      
       box-shadow: 
         inset 1px 1px 2px rgba(40, 75, 115, 0.35),
         0px 1px 0px #ffffff;
-        
       text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.8);
       cursor: pointer;
       user-select: none;
@@ -360,7 +349,6 @@
       filter: drop-shadow(0px 1px 0px rgba(255, 255, 255, 0.7));
     }
 
-    /* COMPOSER & IMAGE ICON STYLING */
     #composer-wrap{padding:7px 10px 9px;background:linear-gradient(#edf4fb,#d7e6f4);border-top:1px solid #a7b8ca}.reply-banner{max-width:none;margin:0 0 5px;background:#fff7cf;border:1px solid #dfca79;padding:5px 8px;border-radius:2px;font-size:10px;color:#655522;display:flex;justify-content:space-between}.composer{display:flex;gap:6px;align-items:flex-end}
     .composer textarea{flex:1;min-height:42px;max-height:100px}
     
@@ -639,7 +627,6 @@
       background: rgba(255, 255, 255, 0.4);
     }
 
-    /* IN-APP MOBILE TOAST NOTIFICATION */
     #mobile-toast {
       position: fixed;
       top: 14px;
@@ -664,7 +651,6 @@
       opacity: 1;
     }
 
-    /* MOBILE OVERLAY FOR SIDEBAR */
     .mobile-overlay {
       display: none;
       position: absolute;
@@ -682,7 +668,6 @@
       #app { padding: 0 !important; height: 100vh !important; height: 100dvh !important; }
       .messenger-window { width: 100vw !important; height: 100vh !important; height: 100dvh !important; border-radius: 0 !important; border: none !important; top:0 !important; left:0 !important; }
       
-      /* Mobile Collapsible Side Panel */
       .sidebar {
         position: absolute;
         top: 0;
@@ -992,9 +977,13 @@
 
   let currentUser = null;
   let currentProfile = null;
-  let userStatus = "Online"; // Options: Online, DND, Idle
+  
+  // PERSISTENCE FIX 1: Read status from localStorage fallback, defaulting to "Online"
+  let userStatus = localStorage.getItem("apbn_user_status") || "Online";
+  
   let replyTo = null;
   let realtimeChannel = null;
+  let profileRealtimeChannel = null;
   let popoverTimeout = null;
   let activeTarget = null;
   let initialMessagesLoaded = false;
@@ -1021,7 +1010,6 @@
     toggleMobileSidebar(false);
   };
 
-  // Helper to map status to image icon file
   function getStatusImage(status) {
     const s = (status || "Online").toLowerCase();
     if (s === "dnd") return "dnd.png";
@@ -1030,23 +1018,32 @@
     return "online.png";
   }
 
-  // Handle status change from dropdown
+  // PERSISTENCE FIX 2: Handle status changes and persist to localStorage + Supabase DB
   const userStatusSelect = $("user-status-select");
   if (userStatusSelect) {
-    userStatusSelect.addEventListener("change", (e) => {
+    userStatusSelect.value = userStatus;
+    userStatusSelect.addEventListener("change", async (e) => {
       userStatus = e.target.value;
+      localStorage.setItem("apbn_user_status", userStatus);
+      
       const sidebarBadge = $("sidebar-status-badge");
       if (sidebarBadge) sidebarBadge.src = getStatusImage(userStatus);
+      
       if (currentProfile) {
         currentProfile.status = userStatus;
+        try {
+          await sb.from("profiles")
+            .update({ status: userStatus })
+            .eq("id", currentUser.id);
+        } catch (err) {
+          console.warn("Could not save status to Supabase:", err);
+        }
       }
     });
   }
 
-  // Audio Synthesizer Beep
   let audioCtx = null;
   function playNotificationBeep() {
-    // If user is set to DND, mute all audio
     if (userStatus === "DND") return;
 
     try {
@@ -1071,9 +1068,8 @@
     }
   }
 
-  // Mobile In-App Toast Alert Fallback
   function showInAppToast(sender, text) {
-    if (userStatus === "DND") return; // Mute notifications on DND
+    if (userStatus === "DND") return;
     const toast = $("mobile-toast");
     if (!toast) return;
     toast.innerHTML = `<strong>${escapeHTML(sender)}</strong><br>${escapeHTML(text)}`;
@@ -1528,7 +1524,6 @@
   }
 
   async function triggerBrowserNotification(senderName, messageText, forceShow = false) {
-    // If current user is in DND, do NOT trigger sounds or notifications
     if (userStatus === "DND") return;
 
     playNotificationBeep();
@@ -1794,7 +1789,7 @@
     $("save-profile-btn").disabled = true;
     try {
       const { error } = await sb.from("profiles")
-        .update({ display_name: displayName, avatar_url: avatarUrl, bio: bio })
+        .update({ display_name: displayName, avatar_url: avatarUrl, bio: bio, status: userStatus })
         .eq("id", currentUser.id);
 
       if (error) throw error;
@@ -1809,6 +1804,7 @@
     }
   };
 
+  // PERSISTENCE FIX 3: Fetch saved status from DB on profile load & sync UI selector
   async function loadProfile() {
     const { data, error } = await sb.from("profiles")
       .select("*").eq("id", currentUser.id).single();
@@ -1819,6 +1815,18 @@
       await sb.auth.signOut();
       throw new Error("This account has been banned from the portal.");
     }
+
+    // Restore persisted status from DB if present
+    if (currentProfile.status) {
+      userStatus = currentProfile.status;
+      localStorage.setItem("apbn_user_status", userStatus);
+    } else {
+      // Initialize DB with local status if unset
+      sb.from("profiles").update({ status: userStatus }).eq("id", currentUser.id).then();
+    }
+
+    const userStatusSelect = $("user-status-select");
+    if (userStatusSelect) userStatusSelect.value = userStatus;
 
     const displayName = currentProfile.display_name || currentProfile.username;
     const avatar = currentProfile.avatar_url || "group-logo.png";
@@ -1856,7 +1864,7 @@
     const { data, error } = await sb.from("messages")
       .select(`
         id, user_id, content, created_at, deleted, reply_to,
-        profiles:user_id(id, username, display_name, avatar_url, bio, role)
+        profiles:user_id(id, username, display_name, avatar_url, bio, role, status)
       `)
       .order("created_at", { ascending: true });
 
@@ -1874,6 +1882,7 @@
     renderMessages(data);
   }
 
+  // PERSISTENCE FIX 4: Render exact status badges for both current user and squad members
   function renderMessages(rows) {
     messagesEl.innerHTML = "";
     const byId = new Map(rows.map(r => [r.id, r]));
@@ -1994,8 +2003,10 @@
     if (error) alert(error.message);
   }
 
+  // PERSISTENCE FIX 5: Real-time subscription to profile status changes across users
   function subscribeRealtime() {
     if (realtimeChannel) sb.removeChannel(realtimeChannel);
+    if (profileRealtimeChannel) sb.removeChannel(profileRealtimeChannel);
 
     realtimeChannel = sb.channel("apbn-message-feed")
       .on("postgres_changes", {
@@ -2025,12 +2036,24 @@
         table: "messages"
       }, () => loadMessages())
       .subscribe();
+
+    profileRealtimeChannel = sb.channel("apbn-profile-feed")
+      .on("postgres_changes", {
+        event: "UPDATE",
+        schema: "public",
+        table: "profiles"
+      }, () => loadMessages())
+      .subscribe();
   }
 
   async function logout() {
     if (realtimeChannel) {
       await sb.removeChannel(realtimeChannel);
       realtimeChannel = null;
+    }
+    if (profileRealtimeChannel) {
+      await sb.removeChannel(profileRealtimeChannel);
+      profileRealtimeChannel = null;
     }
     $("settings-modal").classList.add("hidden");
     await sb.auth.signOut();
