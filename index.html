@@ -242,7 +242,7 @@
       overflow: hidden;
     }
 
-    /* EMBEDDED MEDIA (YOUTUBE / SPOTIFY) */
+    /* EMBEDDED MEDIA (YOUTUBE / SPOTIFY / MP4) */
 	.chat-embed-media {
 	display: block;
 	margin-top: 6px;
@@ -1255,10 +1255,20 @@
     return clean.trim();
   }
 
-  // EXTENDED TEXT FORMATTER WITH YOUTUBE, SPOTIFY, CATBOX, MYINSTANTS & IMAGE EMBEDS
+  // EXTENDED TEXT FORMATTER WITH YOUTUBE, SPOTIFY, CATBOX, MYINSTANTS, MP4 & IMAGE EMBEDS
   function formatText(s) {
     let safe = escapeHTML(s);
-    
+
+    // Easter Egg Replacement
+    const easterEggUrl = "https://cdn.discordapp.com/attachments/872398057856184330/1555987461342109810/password.mp4?ex=6ac285bf&is=6ac1343f&hm=86c886f4d1fe234570932e5e0d6485da69c0c5f9f2d4811092db99b3930704ab&";
+    safe = safe.replace(/\bandhenemoviedekhiorrgungeneganagaya\b/g, easterEggUrl);
+
+    // Auto-detect and embed direct MP4 video links
+    const mp4Regex = /(https?:\/\/[^\s]+?\.(?:mp4)(?:\?[^\s]*)?)/gi;
+    safe = safe.replace(mp4Regex, (match) => {
+      return `<br><video class="chat-embed-media" controls src="${match}"></video>`;
+    });
+
     // Auto-detect and embed Youtube links
     const youtubeRegex = /https?:\/\/(?:www\.|m\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})[^\s]*/gi;
     safe = safe.replace(youtubeRegex, (match, videoId) => {
@@ -2198,49 +2208,33 @@
           reason = prompt("Ban reason (optional):", "Violation of APBn portal rules") || "";
         }
         const { error } = await sb.from("profiles")
-          .update({ banned: !p.banned, ban_reason: p.banned ? null : reason })
+          .update({ banned: !p.banned, ban_reason: reason })
           .eq("id", p.id);
+
         if (error) alert(error.message);
-        else loadAdminUsers();
+        else await loadAdminUsers();
       };
 
       list.appendChild(row);
     });
   }
 
-  $("login-btn").onclick = login;
-  $("signup-btn").onclick = createAccount;
-  $("send-btn").onclick = sendMessage;
+  $("close-admin").onclick = () => $("admin-modal").classList.add("hidden");
   $("admin-btn").onclick = openAdmin;
+
   $("settings-toolbar").onclick = () => $("settings-modal").classList.remove("hidden");
   $("close-settings-btn").onclick = () => $("settings-modal").classList.add("hidden");
   $("settings-logout-btn").onclick = logout;
   $("delete-account-btn").onclick = deleteAccount;
-  $("close-admin").onclick = () => $("admin-modal").classList.add("hidden");
 
-  // UPDATED KEYDOWN LISTENER: Enter always inserts new line on mobile/touch screens
-  input.addEventListener("keydown", e => {
-    const isMobile = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  $("signup-btn").onclick = createAccount;
+  $("login-btn").onclick = login;
+  $("send-btn").onclick = sendMessage;
 
-    if (e.key === "Enter") {
-      if (isMobile) {
-        // Allow default behavior (adds newline) on touch/mobile devices
-        return;
-      } else {
-        // Desktop PC behavior: Shift+Enter = new line, Enter alone = send
-        if (!e.shiftKey) {
-          e.preventDefault();
-          sendMessage();
-        }
-      }
-    }
-  });
-
-  document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === "visible" && currentUser && initialMessagesLoaded) {
-      if (!realtimeChannel || realtimeChannel.state !== "joined") subscribeRealtime();
-      if (!presenceChannel || presenceChannel.state !== "joined") startPresence();
-      loadMessages();
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
     }
   });
 
@@ -2249,21 +2243,10 @@
     if (currentUser) {
       await enterApp();
     } else {
-      stopPresence();
-      currentProfile = null;
-      app.classList.add("hidden");
       authScreen.classList.remove("hidden");
-      switchAuth("login");
+      app.classList.add("hidden");
     }
   });
-
-  (async () => {
-    const { data: { session } } = await sb.auth.getSession();
-    if (session) {
-      currentUser = session.user;
-      await enterApp();
-    }
-  })();
 })();
 </script>
 </body>
