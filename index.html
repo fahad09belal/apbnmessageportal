@@ -59,7 +59,7 @@
     .window-buttons button.close{background:linear-gradient(#ff7b70,#b9150d);border-color:#ffd0cc}
 
     .login-inner{padding:20px 24px 22px}.login-head{display:flex;gap:18px;align-items:center;margin-bottom:15px}.login-logo{width:90px;height:90px;border-radius:9px;border:1px solid #91a8bf;background:#fff;object-fit:contain;box-shadow:0 2px 5px #66778855}.login-title h1{font:700 21px Tahoma,Verdana,sans-serif;margin:0 0 4px;color:#173a68;text-transform:none;text-shadow:none}.login-title p{margin:0;color:#5c6f84;font-size:12px}.sub{color:#5d6d7e;margin:0 0 16px;font-size:12px}
-    label{display:block;color:#23384d;font-size:12px;margin:11px 0 5px}input,textarea{width:100%;background:#fff;color:#111;border:1px solid #8197ad;border-radius:2px;padding:8px 9px;outline:none;box-shadow:inset 0 1px 2px #8899aa44}input:focus,textarea:focus{border-color:#347dcc;box-shadow:0 0 0 1px #76aee8}.btn{border:1px solid #315f91;border-radius:3px;padding:7px 14px;background:linear-gradient(#fff,#d9e7f5 48%,#b7cde4);color:#102d4b;font-weight:bold;font-size:12px;box-shadow:inset 0 1px #fff,0 1px 2px #0003}.btn:hover{filter:brightness(1.04)}.btn.secondary{background:linear-gradient(#fff,#e7eef5 48%,#cbd9e7);color:#21384f}.btn.danger{background:linear-gradient(#fff,#ffdede 48%,#f0a9a9);color:#7c0000;border-color:#a55}.btn.full{width:100%;margin-top:14px}.switch{margin-top:15px;text-align:center;color:#5c6d80;font-size:11px}.switch button{background:none;border:0;color:#064fa9;text-decoration:underline;padding:0}.error,.ok{margin-top:12px;padding:8px;border-radius:3px;font-size:11px}.error{background:#ffe2e2;border:1px solid #cf8d8d;color:#8a0000}.ok{background:#e1f5e5;border:1px solid #8abf93;color:#126022}
+    label{display:block;color:#23384d;font-size:12px;margin:11px 0 5px}input,textarea,select{width:100%;background:#fff;color:#111;border:1px solid #8197ad;border-radius:2px;padding:8px 9px;outline:none;box-shadow:inset 0 1px 2px #8899aa44}input:focus,textarea:focus,select:focus{border-color:#347dcc;box-shadow:0 0 0 1px #76aee8}.btn{border:1px solid #315f91;border-radius:3px;padding:7px 14px;background:linear-gradient(#fff,#d9e7f5 48%,#b7cde4);color:#102d4b;font-weight:bold;font-size:12px;box-shadow:inset 0 1px #fff,0 1px 2px #0003}.btn:hover{filter:brightness(1.04)}.btn.secondary{background:linear-gradient(#fff,#e7eef5 48%,#cbd9e7);color:#21384f}.btn.danger{background:linear-gradient(#fff,#ffdede 48%,#f0a9a9);color:#7c0000;border-color:#a55}.btn.full{width:100%;margin-top:14px}.switch{margin-top:15px;text-align:center;color:#5c6d80;font-size:11px}.switch button{background:none;border:0;color:#064fa9;text-decoration:underline;padding:0}.error,.ok{margin-top:12px;padding:8px;border-radius:3px;font-size:11px}.error{background:#ffe2e2;border:1px solid #cf8d8d;color:#8a0000}.ok{background:#e1f5e5;border:1px solid #8abf93;color:#126022}
 
     #app{
       height: calc(100vh - var(--taskbar-height));
@@ -163,10 +163,57 @@
       border-color:#347dcc;
       box-shadow:0 0 6px rgba(39,123,221,0.3);
     }
-    .profile-avatar{width:44px;height:44px;border:1px solid #91a6ba;background:#fff;border-radius:4px;object-fit:cover}
+
+    /* AVATAR & STATUS BADGE CONTAINER */
+    .avatar-container {
+      position: relative;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+    .profile-avatar{width:44px;height:44px;border:1px solid #91a6ba;background:#fff;border-radius:4px;object-fit:cover;display:block;}
+    .msg-avatar{width:36px;height:36px;border-radius:4px;border:1px solid #9aaabc;object-fit:cover;cursor:pointer;display:block;}
+    .popover-avatar{width:50px;height:50px;border-radius:4px;border:1px solid #7d96af;object-fit:cover;background:#fff;display:block;}
+
+    /* STATUS BADGE OVERLAY */
+    .status-badge {
+      position: absolute;
+      bottom: -3px;
+      right: -3px;
+      width: 14px;
+      height: 14px;
+      object-fit: contain;
+      z-index: 2;
+      filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.4));
+    }
+    .msg .status-badge {
+      width: 12px;
+      height: 12px;
+      bottom: -2px;
+      right: -2px;
+    }
+
     .profile-name{font-weight:bold;color:#1d426c;font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
     .profile-subname{font-size:10px;color:#5a6e85;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
     .profile-state{font-size:11px;color:#2b7a3b;margin-top:2px;display:flex;align-items:center;gap:4px}
+
+    /* STATUS SELECTOR DROPDOWN */
+    .status-select-wrap {
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .status-select {
+      font-size: 10px;
+      padding: 2px 4px;
+      height: 22px;
+      border-radius: 3px;
+      border: 1px solid #8197ad;
+      background: #fff;
+      color: #1a334d;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
     .profile-popover{
       position:fixed;
@@ -184,7 +231,6 @@
     }
     .profile-popover.show{display:flex}
     .popover-head{display:flex;gap:10px;align-items:center}
-    .popover-avatar{width:50px;height:50px;border-radius:4px;border:1px solid #7d96af;object-fit:cover;background:#fff}
     .popover-details{flex:1;min-width:0}
     .popover-title{font-weight:bold;font-size:13px;color:#0d325c;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
     .popover-handle{font-size:11px;color:#5a6e85}
@@ -199,7 +245,6 @@
     #messages{flex:1;overflow-y:auto;padding:12px 14px;background:#fff;scrollbar-color:#9aaabc #edf2f7;position:relative}
     .msg{position:relative;margin:0 0 8px;padding:8px 10px;background:#fff;border-bottom:1px solid #d8e0e8;display:flex;gap:10px;align-items:flex-start}
     .msg.mine{background:#f3f8fd;border-left:3px solid #4d91d8}.msg.deleted{opacity:.72}
-    .msg-avatar{width:36px;height:36px;border-radius:4px;border:1px solid #9aaabc;object-fit:cover;cursor:pointer;flex-shrink:0;margin-top:2px}
     .msg-avatar:hover{filter:brightness(1.1)}
     .msg-content-wrap{flex:1;min-width:0}
     .msg-head{display:flex;align-items:center;gap:7px;margin-bottom:2px}
@@ -253,7 +298,6 @@
 	box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 	}
 
-	/* Add an explicit height rule for Spotify embeds */
 	iframe[src*="spotify.com/embed"] {
 	height: 152px !important;
 	}
@@ -740,17 +784,27 @@
       <img id="mobile-profile-toggle" class="mobile-profile-toggle" src="group-logo.png" title="Toggle Side Panel" alt="Profile Button">
       <button class="btn secondary" id="settings-toolbar">Settings</button>
       <button class="btn secondary" id="admin-btn">Admin</button>
-      <div class="sep"></div><div class="status"><span class="status-dot"></span>Online</div>
+      <div class="sep"></div>
+      <div class="status"><span class="status-dot"></span>Online</div>
     </div>
     <div class="workspace">
       <div id="mobile-overlay" class="mobile-overlay"></div>
       <aside class="sidebar" id="sidebar">
         <div class="profile-box" id="profile-box">
-          <img class="profile-avatar" id="sidebar-avatar" src="group-logo.png" alt="">
+          <div class="avatar-container">
+            <img class="profile-avatar" id="sidebar-avatar" src="group-logo.png" alt="">
+            <img class="status-badge" id="sidebar-status-badge" src="online.png" alt="Status">
+          </div>
           <div style="min-width:0;flex:1">
             <div class="profile-name" id="who">User</div>
             <div class="profile-subname" id="subwho">@user</div>
-            <div class="profile-state"><span class="status-dot"></span>Online</div>
+            <div class="status-select-wrap">
+              <select id="user-status-select" class="status-select">
+                <option value="Online">Online</option>
+                <option value="DND">DND</option>
+                <option value="Idle">Idle</option>
+              </select>
+            </div>
           </div>
         </div>
 
@@ -767,9 +821,7 @@
         <div id="composer-wrap">
           <div id="reply-banner" class="reply-banner hidden"><span id="reply-label"></span><button class="tiny" id="cancel-reply">Cancel</button></div>
           <div class="composer">
-            <!-- HIDDEN FILE INPUT -->
             <input type="file" id="imgbb-file-input" accept="image/*,.gif" class="hidden">
-            <!-- IMAGE UPLOAD BUTTON ICON -->
             <button class="upload-icon-btn" id="upload-image-btn" title="Upload Image/GIF to ImgBB">
               <svg viewBox="0 0 24 24">
                 <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5-7l-3 3.72L9 13l-3 4h12l-4-5z"/>
@@ -818,7 +870,10 @@
 
   <div class="profile-popover" id="profile-popover">
     <div class="popover-head">
-      <img class="popover-avatar" id="popover-avatar" src="group-logo.png" alt="">
+      <div class="avatar-container">
+        <img class="popover-avatar" id="popover-avatar" src="group-logo.png" alt="">
+        <img class="status-badge" id="popover-status-badge" src="online.png" alt="Status">
+      </div>
       <div class="popover-details">
         <div class="popover-title" id="popover-display-name">Display Name</div>
         <div class="popover-handle" id="popover-username">@username</div>
@@ -841,7 +896,6 @@
     <label for="edit-avatar-url">Avatar Image URL</label>
     <input id="edit-avatar-url" placeholder="https://example.com/avatar.png">
 
-    <!-- DIRECT AVATAR FILE UPLOAD OPTION -->
     <input type="file" id="avatar-file-input" accept="image/*,.gif" class="hidden">
     <button type="button" class="btn secondary full" id="upload-avatar-btn" style="margin-top:6px;">Upload Profile Picture</button>
     
@@ -890,7 +944,6 @@
   </div>
 </div>
 
-<!-- IN-APP MOBILE TOAST POPUP -->
 <div id="mobile-toast"></div>
 
 <footer class="win7-taskbar">
@@ -922,7 +975,6 @@
   const SUPABASE_PUBLISHABLE_KEY = "__SUPABASE_ANON_KEY__";
   const AUTH_DOMAIN = "apbn.local";
 
-  // Insert your ImgBB API Key below (from https://api.imgbb.com/)
   const IMGBB_API_KEY = "d895a576a810d43ebf43d08d566f48a9";
 
   const { createClient } = window.supabase;
@@ -940,6 +992,7 @@
 
   let currentUser = null;
   let currentProfile = null;
+  let userStatus = "Online"; // Options: Online, DND, Idle
   let replyTo = null;
   let realtimeChannel = null;
   let popoverTimeout = null;
@@ -949,7 +1002,6 @@
 
   const usernameRegex = /^[A-Za-z]+@[0-9]+$/;
 
-  // Mobile Side Panel Controls
   const sidebarEl = $("sidebar");
   const mobileProfileToggleBtn = $("mobile-profile-toggle");
   const mobileOverlayEl = $("mobile-overlay");
@@ -969,9 +1021,34 @@
     toggleMobileSidebar(false);
   };
 
+  // Helper to map status to image icon file
+  function getStatusImage(status) {
+    const s = (status || "Online").toLowerCase();
+    if (s === "dnd") return "dnd.png";
+    if (s === "idle") return "idle.png";
+    if (s === "offline") return "offline.png";
+    return "online.png";
+  }
+
+  // Handle status change from dropdown
+  const userStatusSelect = $("user-status-select");
+  if (userStatusSelect) {
+    userStatusSelect.addEventListener("change", (e) => {
+      userStatus = e.target.value;
+      const sidebarBadge = $("sidebar-status-badge");
+      if (sidebarBadge) sidebarBadge.src = getStatusImage(userStatus);
+      if (currentProfile) {
+        currentProfile.status = userStatus;
+      }
+    });
+  }
+
   // Audio Synthesizer Beep
   let audioCtx = null;
   function playNotificationBeep() {
+    // If user is set to DND, mute all audio
+    if (userStatus === "DND") return;
+
     try {
       const AudioCtx = window.AudioContext || window.webkitAudioContext;
       if (!AudioCtx) return;
@@ -996,6 +1073,7 @@
 
   // Mobile In-App Toast Alert Fallback
   function showInAppToast(sender, text) {
+    if (userStatus === "DND") return; // Mute notifications on DND
     const toast = $("mobile-toast");
     if (!toast) return;
     toast.innerHTML = `<strong>${escapeHTML(sender)}</strong><br>${escapeHTML(text)}`;
@@ -1006,7 +1084,6 @@
     }, 4500);
   }
 
-  // Register Service Worker (sw.js)
   async function registerServiceWorker() {
     if (!('serviceWorker' in navigator)) return;
     try {
@@ -1026,7 +1103,6 @@
     });
   }
 
-  // Taskbar Clock
   function updateTaskbarClock() {
     const now = new Date();
     const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -1231,42 +1307,35 @@
     return clean.trim();
   }
 
-  // EXTENDED TEXT FORMATTER WITH YOUTUBE, SPOTIFY, CATBOX, MYINSTANTS & IMAGE EMBEDS
   function formatText(s) {
     let safe = escapeHTML(s);
     
-    // Auto-detect and embed Youtube links
     const youtubeRegex = /https?:\/\/(?:www\.|m\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})[^\s]*/gi;
     safe = safe.replace(youtubeRegex, (match, videoId) => {
       return `<br><iframe class="chat-embed-media" height="240" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
     });
 
-    // Auto-detect and embed Spotify links
     const spotifyRegex = /https?:\/\/open\.spotify\.com\/(track|album|playlist|episode)\/([a-zA-Z0-9]+)[^\s]*/gi;
     safe = safe.replace(spotifyRegex, (match, type, id) => {
       return `<br><iframe class="chat-embed-media" src="https://open.spotify.com/embed/${type}/${id}" height="152" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`;
     });
 
-    // Auto-detect files.catbox.moe links and replace with MSN Engraved Download Button
     const catboxRegex = /(https?:\/\/files\.catbox\.moe\/[a-zA-Z0-9._-]+)/gi;
     safe = safe.replace(catboxRegex, (match) => {
       return `<br><a href="${match}" target="_blank" rel="noopener noreferrer" class="msn-engraved-btn"><span class="msn-icon-dl"></span><span>Download</span></a>`;
     });
 
-    // Auto-detect and embed MyInstants links
     const myinstantsRegex = /https?:\/\/(?:www\.)?myinstants\.com\/(?:[a-z]{2}\/)?instant\/([a-zA-Z0-9-]+)\/?[^\s]*/gi;
     safe = safe.replace(myinstantsRegex, (match, instantSlug) => {
       const embedUrl = `https://www.myinstants.com/instant/${instantSlug}/embed/`;
       return `<br><iframe class="chat-embed-instant" width="110" height="200" src="${embedUrl}" frameborder="0" scrolling="no"></iframe>`;
     });
 
-    // Auto-detect and render direct image or GIF links (including ibb.co or i.ibb.co images)
     const imageRegex = /(https?:\/\/[^\s]+?\.(?:png|jpe?g|gif|webp|bmp))/gi;
     safe = safe.replace(imageRegex, (match) => {
       return `<br><a href="${match}" target="_blank" rel="noopener noreferrer"><img src="${match}" class="chat-embed-image" alt="Uploaded Image" loading="lazy"></a>`;
     });
 
-    // Detect @mentions
     safe = safe.replace(/(^|[\s])(@[A-Za-z]+@[0-9]+)\b/g, '$1<span class="mention">$2</span>');
     return safe;
   }
@@ -1286,7 +1355,6 @@
   $("show-signup").onclick = () => switchAuth("signup");
   $("show-login").onclick = () => switchAuth("login");
 
-  // IMGBB.COM UPLOADER FUNCTION FOR CHAT COMPOSER
   const imgbbFileInput = $("imgbb-file-input");
   const uploadImageBtn = $("upload-image-btn");
 
@@ -1311,7 +1379,6 @@
       const formData = new FormData();
       formData.append("image", file);
 
-      // Call ImgBB official API v1 upload endpoint directly
       const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
         method: "POST",
         body: formData
@@ -1324,10 +1391,8 @@
         throw new Error(json.error?.message || "Invalid upload response from ImgBB.");
       }
 
-      // ImgBB returns the image link in json.data.url or json.data.display_url
       const fileUrl = json.data.url;
 
-      // Append image link to message box
       input.value = input.value ? `${input.value}\n${fileUrl}` : fileUrl;
       input.focus();
     } catch (err) {
@@ -1339,7 +1404,6 @@
     }
   };
 
-  // IMGBB.COM UPLOADER FUNCTION FOR AVATAR/PROFILE PICTURE
   const avatarFileInput = $("avatar-file-input");
   const uploadAvatarBtn = $("upload-avatar-btn");
 
@@ -1376,7 +1440,6 @@
         throw new Error(json.error?.message || "Invalid upload response from ImgBB.");
       }
 
-      // Populate avatar URL input field with uploaded ImgBB URL
       $("edit-avatar-url").value = json.data.url;
     } catch (err) {
       alert("Failed to upload avatar to ImgBB: " + err.message);
@@ -1387,7 +1450,6 @@
     }
   };
 
-  // Universal Mobile & Desktop Notification Manager
   function initNotificationSettings() {
     const toggle = $("notification-toggle");
     const statusMsg = $("notification-status-msg");
@@ -1466,6 +1528,9 @@
   }
 
   async function triggerBrowserNotification(senderName, messageText, forceShow = false) {
+    // If current user is in DND, do NOT trigger sounds or notifications
+    if (userStatus === "DND") return;
+
     playNotificationBeep();
 
     const isEnabled = localStorage.getItem("apbn_notifications_enabled") !== "false";
@@ -1661,10 +1726,12 @@
     const bio = profileData.bio || "No bio added yet.";
     const isAdmin = profileData.role === "admin";
     const isSelf = profileData.id === currentUser?.id;
+    const st = isSelf ? userStatus : (profileData.status || "Online");
 
     $("popover-display-name").textContent = displayName;
     $("popover-username").textContent = "@" + (profileData.username || "user");
     $("popover-avatar").src = avatar;
+    $("popover-status-badge").src = getStatusImage(st);
     $("popover-bio").textContent = bio;
 
     const badgeEl = $("popover-badge");
@@ -1760,6 +1827,7 @@
     $("who").textContent = displayName;
     $("subwho").textContent = "@" + currentProfile.username;
     $("sidebar-avatar").src = avatar;
+    $("sidebar-status-badge").src = getStatusImage(userStatus);
     $("mobile-profile-toggle").src = avatar;
 
     $("admin-btn").classList.toggle("hidden", !isAdmin);
@@ -1820,6 +1888,9 @@
       const avatar = profile.avatar_url || "group-logo.png";
       const isAdmin = profile.role === "admin";
       const reply = row.reply_to ? byId.get(row.reply_to) : null;
+      
+      const st = (row.user_id === currentUser.id) ? userStatus : (profile.status || "Online");
+      const statusBadgeImg = getStatusImage(st);
 
       let replyHTML = "";
       if (reply) {
@@ -1829,7 +1900,10 @@
       }
 
       article.innerHTML = `
-        <img class="msg-avatar" src="${escapeHTML(avatar)}" alt="">
+        <div class="avatar-container">
+          <img class="msg-avatar" src="${escapeHTML(avatar)}" alt="">
+          <img class="status-badge" src="${statusBadgeImg}" alt="Status">
+        </div>
         <div class="msg-content-wrap">
           <div class="msg-head">
             <span class="user-clickable">${escapeHTML(displayName)}</span>
@@ -1975,111 +2049,33 @@
     }
   }
 
-  async function openAdmin() {
-    $("admin-modal").classList.remove("hidden");
-    await loadAdminUsers();
-  }
-
-  async function loadAdminUsers() {
-    const list = $("admin-list");
-    list.textContent = "Loading…";
-    const { data, error } = await sb.from("profiles")
-      .select("id,username,display_name,role,banned,ban_reason,created_at")
-      .order("created_at", { ascending: true });
-
-    if (error) {
-      list.textContent = error.message;
-      return;
-    }
-
-    list.innerHTML = "";
-    data.forEach(p => {
-      const row = document.createElement("div");
-      row.className = "admin-row";
-      const name = p.display_name || p.username;
-      row.innerHTML = `
-        <div>
-          <strong>${escapeHTML(name)}</strong> <small>(@${escapeHTML(p.username)})</small>
-          <span class="role-badge ${p.role === "admin" ? "admin" : "member"}">${p.role}</span>
-          ${p.banned ? '<span class="role-badge" style="background:#ffcdd2;color:#b71c1c">BANNED</span>' : ''}
-        </div>
-        <button class="tiny ban-toggle">${p.banned ? "Unban" : "Ban"}</button>
-      `;
-
-      row.querySelector(".ban-toggle").onclick = async () => {
-        if (p.id === currentUser.id) {
-          alert("Do not ban your own admin account.");
-          return;
-        }
-        let reason = "";
-        if (!p.banned) {
-          reason = prompt("Ban reason (optional):", "Violation of APBn portal rules") || "";
-        }
-        const { error } = await sb.from("profiles")
-          .update({ banned: !p.banned, ban_reason: p.banned ? null : reason })
-          .eq("id", p.id);
-        if (error) alert(error.message);
-        else loadAdminUsers();
-      };
-
-      list.appendChild(row);
-    });
-  }
-
   $("login-btn").onclick = login;
   $("signup-btn").onclick = createAccount;
   $("send-btn").onclick = sendMessage;
-  $("admin-btn").onclick = openAdmin;
+
+  input.onkeydown = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  };
+
   $("settings-toolbar").onclick = () => $("settings-modal").classList.remove("hidden");
   $("close-settings-btn").onclick = () => $("settings-modal").classList.add("hidden");
   $("settings-logout-btn").onclick = logout;
   $("delete-account-btn").onclick = deleteAccount;
-  $("close-admin").onclick = () => $("admin-modal").classList.add("hidden");
 
-  // UPDATED KEYDOWN LISTENER: Enter always inserts new line on mobile/touch screens
-  input.addEventListener("keydown", e => {
-    const isMobile = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-
-    if (e.key === "Enter") {
-      if (isMobile) {
-        // Allow default behavior (adds newline) on touch/mobile devices
-        return;
-      } else {
-        // Desktop PC behavior: Shift+Enter = new line, Enter alone = send
-        if (!e.shiftKey) {
-          e.preventDefault();
-          sendMessage();
-        }
-      }
-    }
-  });
-
-  document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === "visible" && currentUser && initialMessagesLoaded) {
-      if (!realtimeChannel || realtimeChannel.state !== "joined") subscribeRealtime();
-      loadMessages();
-    }
-  });
-
-  sb.auth.onAuthStateChange(async (event, session) => {
+  sb.auth.onAuthStateChange((event, session) => {
     currentUser = session?.user || null;
     if (currentUser) {
-      await enterApp();
+      enterApp();
     } else {
-      currentProfile = null;
-      app.classList.add("hidden");
       authScreen.classList.remove("hidden");
-      switchAuth("login");
+      app.classList.add("hidden");
+      clearStatus();
     }
   });
 
-  (async () => {
-    const { data: { session } } = await sb.auth.getSession();
-    if (session) {
-      currentUser = session.user;
-      await enterApp();
-    }
-  })();
 })();
 </script>
 </body>
