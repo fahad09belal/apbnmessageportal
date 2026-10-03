@@ -59,7 +59,7 @@
     .window-buttons button.close{background:linear-gradient(#ff7b70,#b9150d);border-color:#ffd0cc}
 
     .login-inner{padding:20px 24px 22px}.login-head{display:flex;gap:18px;align-items:center;margin-bottom:15px}.login-logo{width:90px;height:90px;border-radius:9px;border:1px solid #91a8bf;background:#fff;object-fit:contain;box-shadow:0 2px 5px #66778855}.login-title h1{font:700 21px Tahoma,Verdana,sans-serif;margin:0 0 4px;color:#173a68;text-transform:none;text-shadow:none}.login-title p{margin:0;color:#5c6f84;font-size:12px}.sub{color:#5d6d7e;margin:0 0 16px;font-size:12px}
-    label{display:block;color:#23384d;font-size:12px;margin:11px 0 5px}input,textarea,select{width:100%;background:#fff;color:#111;border:1px solid #8197ad;border-radius:2px;padding:8px 9px;outline:none;box-shadow:inset 0 1px 2px #8899aa44}input:focus,textarea:focus,select:focus{border-color:#347dcc;box-shadow:0 0 0 1px #76aee8}.btn{border:1px solid #315f91;border-radius:3px;padding:7px 14px;background:linear-gradient(#fff,#d9e7f5 48%,#b7cde4);color:#102d4b;font-weight:bold;font-size:12px;box-shadow:inset 0 1px #fff,0 1px 2px #0003}.btn:hover{filter:brightness(1.04)}.btn.secondary{background:linear-gradient(#fff,#e7eef5 48%,#cbd9e7);color:#21384f}.btn.danger{background:linear-gradient(#fff,#ffdede 48%,#f0a9a9);color:#7c0000;border-color:#a55}.btn.full{width:100%;margin-top:14px}.switch{margin-top:15px;text-align:center;color:#5c6d80;font-size:11px}.switch button{background:none;border:0;color:#064fa9;text-decoration:underline;padding:0}.error,.ok{margin-top:12px;padding:8px;border-radius:3px;font-size:11px}.error{background:#ffe2e2;border:1px solid #cf8d8d;color:#8a0000}.ok{background:#e1f5e5;border:1px solid #8abf93;color:#126022}
+    label{display:block;color:#23384d;font-size:12px;margin:11px 0 5px}input,textarea{width:100%;background:#fff;color:#111;border:1px solid #8197ad;border-radius:2px;padding:8px 9px;outline:none;box-shadow:inset 0 1px 2px #8899aa44}input:focus,textarea:focus{border-color:#347dcc;box-shadow:0 0 0 1px #76aee8}.btn{border:1px solid #315f91;border-radius:3px;padding:7px 14px;background:linear-gradient(#fff,#d9e7f5 48%,#b7cde4);color:#102d4b;font-weight:bold;font-size:12px;box-shadow:inset 0 1px #fff,0 1px 2px #0003}.btn:hover{filter:brightness(1.04)}.btn.secondary{background:linear-gradient(#fff,#e7eef5 48%,#cbd9e7);color:#21384f}.btn.danger{background:linear-gradient(#fff,#ffdede 48%,#f0a9a9);color:#7c0000;border-color:#a55}.btn.full{width:100%;margin-top:14px}.switch{margin-top:15px;text-align:center;color:#5c6d80;font-size:11px}.switch button{background:none;border:0;color:#064fa9;text-decoration:underline;padding:0}.error,.ok{margin-top:12px;padding:8px;border-radius:3px;font-size:11px}.error{background:#ffe2e2;border:1px solid #cf8d8d;color:#8a0000}.ok{background:#e1f5e5;border:1px solid #8abf93;color:#126022}
 
     #app{
       height: calc(100vh - var(--taskbar-height));
@@ -134,6 +134,7 @@
     .workspace{flex:1;min-height:0;display:flex;background:#fff;overflow:hidden;position:relative}
     .sidebar{width:230px;flex:0 0 230px;background:linear-gradient(90deg,#eaf3fc,#d8e8f8);border-right:1px solid #9cafc3;padding:9px;display:flex;flex-direction:column;overflow-y:auto;position:relative}
 
+    /* Mobile toggle button inside toolbar */
     .mobile-profile-toggle {
       display: none;
       width: 28px;
@@ -162,54 +163,10 @@
       border-color:#347dcc;
       box-shadow:0 0 6px rgba(39,123,221,0.3);
     }
-
-    .avatar-container {
-      position: relative;
-      display: inline-block;
-      flex-shrink: 0;
-    }
-    .profile-avatar{width:44px;height:44px;border:1px solid #91a6ba;background:#fff;border-radius:4px;object-fit:cover;display:block;}
-    .msg-avatar{width:36px;height:36px;border-radius:4px;border:1px solid #9aaabc;object-fit:cover;cursor:pointer;display:block;}
-    .popover-avatar{width:50px;height:50px;border-radius:4px;border:1px solid #7d96af;object-fit:cover;background:#fff;display:block;}
-
-    .status-badge {
-      position: absolute;
-      bottom: -3px;
-      right: -3px;
-      width: 14px;
-      height: 14px;
-      object-fit: contain;
-      z-index: 2;
-      filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.4));
-    }
-    .msg .status-badge {
-      width: 12px;
-      height: 12px;
-      bottom: -2px;
-      right: -2px;
-    }
-
+    .profile-avatar{width:44px;height:44px;border:1px solid #91a6ba;background:#fff;border-radius:4px;object-fit:cover}
     .profile-name{font-weight:bold;color:#1d426c;font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
     .profile-subname{font-size:10px;color:#5a6e85;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
     .profile-state{font-size:11px;color:#2b7a3b;margin-top:2px;display:flex;align-items:center;gap:4px}
-
-    .status-select-wrap {
-      margin-top: 4px;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-    .status-select {
-      font-size: 10px;
-      padding: 2px 4px;
-      height: 22px;
-      border-radius: 3px;
-      border: 1px solid #8197ad;
-      background: #fff;
-      color: #1a334d;
-      font-weight: bold;
-      cursor: pointer;
-    }
 
     .profile-popover{
       position:fixed;
@@ -227,6 +184,7 @@
     }
     .profile-popover.show{display:flex}
     .popover-head{display:flex;gap:10px;align-items:center}
+    .popover-avatar{width:50px;height:50px;border-radius:4px;border:1px solid #7d96af;object-fit:cover;background:#fff}
     .popover-details{flex:1;min-width:0}
     .popover-title{font-weight:bold;font-size:13px;color:#0d325c;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
     .popover-handle{font-size:11px;color:#5a6e85}
@@ -241,6 +199,7 @@
     #messages{flex:1;overflow-y:auto;padding:12px 14px;background:#fff;scrollbar-color:#9aaabc #edf2f7;position:relative}
     .msg{position:relative;margin:0 0 8px;padding:8px 10px;background:#fff;border-bottom:1px solid #d8e0e8;display:flex;gap:10px;align-items:flex-start}
     .msg.mine{background:#f3f8fd;border-left:3px solid #4d91d8}.msg.deleted{opacity:.72}
+    .msg-avatar{width:36px;height:36px;border-radius:4px;border:1px solid #9aaabc;object-fit:cover;cursor:pointer;flex-shrink:0;margin-top:2px}
     .msg-avatar:hover{filter:brightness(1.1)}
     .msg-content-wrap{flex:1;min-width:0}
     .msg-head{display:flex;align-items:center;gap:7px;margin-bottom:2px}
@@ -261,6 +220,7 @@
 
     .time{font-size:10px;color:#7a8794}.body{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;color:#1b1b1b}.deleted-text{font-style:italic;color:#7b8793}.mention{color:#065db3;font-weight:bold}.reply-line{font-size:10px;color:#667787;border-left:2px solid #8fb5dc;padding-left:7px;margin-bottom:5px}.msg-tools{display:flex;justify-content:flex-end;gap:5px;margin-top:5px}.tiny{border:1px solid #9aaabd;background:linear-gradient(#fff,#e3eaf1);color:#2a4056;border-radius:2px;padding:3px 7px;font-size:10px}.tiny:hover{background:#dcecff}
     
+    /* EMBEDDED IMAGES / GIFS / MYINSTANTS STYLING */
     .chat-embed-image {
       max-width: min(320px, 100%);
       max-height: 280px;
@@ -282,20 +242,23 @@
       overflow: hidden;
     }
 
-    .chat-embed-media {
-      display: block;
-      margin-top: 6px;
-      max-width: min(480px, 100%);
-      width: 100%;
-      border-radius: 6px;
-      border: 1px solid #b2c4d6;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
+    /* EMBEDDED MEDIA (YOUTUBE / SPOTIFY) */
+	.chat-embed-media {
+	display: block;
+	margin-top: 6px;
+	max-width: min(480px, 100%);
+	width: 100%;
+	border-radius: 6px;
+	border: 1px solid #b2c4d6;
+	box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+	}
 
-    iframe[src*="spotify.com/embed"] {
-      height: 152px !important;
-    }
+	/* Add an explicit height rule for Spotify embeds */
+	iframe[src*="spotify.com/embed"] {
+	height: 152px !important;
+	}
 
+    /* MSN ENGRAVED DOWNLOAD BUTTON STYLING */
     .msn-engraved-btn {
       display: inline-flex;
       align-items: center;
@@ -307,16 +270,20 @@
       font-weight: bold;
       color: #38597a;
       text-decoration: none;
+      
       background: 
         linear-gradient(180deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.1) 48%, rgba(200, 222, 245, 0.3) 50%, rgba(220, 235, 250, 0.6) 100%),
         linear-gradient(135deg, #ffffff 0%, #ffffff 45%, #dcebfa 46%, #bad3ed 100%);
+
       border: 1px solid #7c9dc2;
       border-top-color: #6183a9;
       border-left-color: #6183a9;
       border-radius: 4px;
+      
       box-shadow: 
         inset 1px 1px 2px rgba(40, 75, 115, 0.35),
         0px 1px 0px #ffffff;
+        
       text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.8);
       cursor: pointer;
       user-select: none;
@@ -349,6 +316,7 @@
       filter: drop-shadow(0px 1px 0px rgba(255, 255, 255, 0.7));
     }
 
+    /* COMPOSER & IMAGE ICON STYLING */
     #composer-wrap{padding:7px 10px 9px;background:linear-gradient(#edf4fb,#d7e6f4);border-top:1px solid #a7b8ca}.reply-banner{max-width:none;margin:0 0 5px;background:#fff7cf;border:1px solid #dfca79;padding:5px 8px;border-radius:2px;font-size:10px;color:#655522;display:flex;justify-content:space-between}.composer{display:flex;gap:6px;align-items:flex-end}
     .composer textarea{flex:1;min-height:42px;max-height:100px}
     
@@ -627,6 +595,7 @@
       background: rgba(255, 255, 255, 0.4);
     }
 
+    /* IN-APP MOBILE TOAST NOTIFICATION */
     #mobile-toast {
       position: fixed;
       top: 14px;
@@ -651,6 +620,7 @@
       opacity: 1;
     }
 
+    /* MOBILE OVERLAY FOR SIDEBAR */
     .mobile-overlay {
       display: none;
       position: absolute;
@@ -668,6 +638,7 @@
       #app { padding: 0 !important; height: 100vh !important; height: 100dvh !important; }
       .messenger-window { width: 100vw !important; height: 100vh !important; height: 100dvh !important; border-radius: 0 !important; border: none !important; top:0 !important; left:0 !important; }
       
+      /* Mobile Collapsible Side Panel */
       .sidebar {
         position: absolute;
         top: 0;
@@ -707,6 +678,24 @@
       .win7-taskbar { display: none !important; }
       :root { --taskbar-height: 0px; }
     }
+
+    /* ===== PRESENCE / STATUS ===== */
+    .avatar-wrap{position:relative;display:inline-block;flex-shrink:0;line-height:0}
+    .msg > .avatar-wrap{margin-top:2px}
+    .avatar-wrap .msg-avatar{margin-top:0;display:block}
+    .status-badge{position:absolute;right:-5px;bottom:-5px;width:15px;height:15px;object-fit:contain;pointer-events:none;z-index:2}
+    .status-icon{width:12px;height:12px;object-fit:contain}
+    .status-select{display:inline-flex;align-items:center;gap:4px;max-width:100%;padding:1px 5px 1px 4px;font-size:11px;color:#2b4a6b;background:linear-gradient(#fff,#e3edf7);border:1px solid #9bb0c5;border-radius:3px;cursor:pointer}
+    .status-select:hover{border-color:#347dcc}
+    .status-select img{width:12px;height:12px;object-fit:contain}
+    .status-select .caret{font-size:8px;opacity:.7}
+    .status-menu{position:fixed;z-index:10000;display:none;min-width:130px;padding:3px;background:linear-gradient(#fff,#eaf2fa);border:1px solid #4a6c8e;border-radius:4px;box-shadow:0 6px 18px rgba(0,0,0,.35)}
+    .status-menu.show{display:block}
+    .status-menu button{display:flex;align-items:center;gap:7px;width:100%;padding:6px 8px;border:0;background:none;font-size:12px;color:#173c64;text-align:left;border-radius:3px}
+    .status-menu button:hover{background:#cfe3f8}
+    .status-menu button.active{font-weight:bold;background:#e1eefb}
+    .status-menu img{width:14px;height:14px;object-fit:contain}
+    .notif-disabled{opacity:.5}
   </style>
 </head>
 <body>
@@ -769,27 +758,17 @@
       <img id="mobile-profile-toggle" class="mobile-profile-toggle" src="group-logo.png" title="Toggle Side Panel" alt="Profile Button">
       <button class="btn secondary" id="settings-toolbar">Settings</button>
       <button class="btn secondary" id="admin-btn">Admin</button>
-      <div class="sep"></div>
-      <div class="status"><span class="status-dot"></span>Online</div>
+      <div class="sep"></div><div class="status" id="toolbar-status"><img class="status-icon" id="toolbar-status-icon" src="online.png" alt=""><span id="toolbar-status-label">Online</span></div>
     </div>
     <div class="workspace">
       <div id="mobile-overlay" class="mobile-overlay"></div>
       <aside class="sidebar" id="sidebar">
         <div class="profile-box" id="profile-box">
-          <div class="avatar-container">
-            <img class="profile-avatar" id="sidebar-avatar" src="group-logo.png" alt="">
-            <img class="status-badge" id="sidebar-status-badge" src="online.png" alt="Status">
-          </div>
+          <span class="avatar-wrap" id="sidebar-avatar-wrap"><img class="profile-avatar" id="sidebar-avatar" src="group-logo.png" alt=""><img class="status-badge" src="online.png" alt=""></span>
           <div style="min-width:0;flex:1">
             <div class="profile-name" id="who">User</div>
             <div class="profile-subname" id="subwho">@user</div>
-            <div class="status-select-wrap">
-              <select id="user-status-select" class="status-select">
-                <option value="Online">Online</option>
-                <option value="DND">DND</option>
-                <option value="Idle">Idle</option>
-              </select>
-            </div>
+            <div class="profile-state"><button type="button" class="status-select" id="status-select-btn" title="Change status"><img id="status-select-icon" src="online.png" alt=""><span id="status-select-label">Online</span><span class="caret">▼</span></button></div>
           </div>
         </div>
 
@@ -806,7 +785,9 @@
         <div id="composer-wrap">
           <div id="reply-banner" class="reply-banner hidden"><span id="reply-label"></span><button class="tiny" id="cancel-reply">Cancel</button></div>
           <div class="composer">
+            <!-- HIDDEN FILE INPUT -->
             <input type="file" id="imgbb-file-input" accept="image/*,.gif" class="hidden">
+            <!-- IMAGE UPLOAD BUTTON ICON -->
             <button class="upload-icon-btn" id="upload-image-btn" title="Upload Image/GIF to ImgBB">
               <svg viewBox="0 0 24 24">
                 <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5-7l-3 3.72L9 13l-3 4h12l-4-5z"/>
@@ -855,10 +836,7 @@
 
   <div class="profile-popover" id="profile-popover">
     <div class="popover-head">
-      <div class="avatar-container">
-        <img class="popover-avatar" id="popover-avatar" src="group-logo.png" alt="">
-        <img class="status-badge" id="popover-status-badge" src="online.png" alt="Status">
-      </div>
+      <span class="avatar-wrap" id="popover-avatar-wrap"><img class="popover-avatar" id="popover-avatar" src="group-logo.png" alt=""><img class="status-badge" src="offline.png" alt=""></span>
       <div class="popover-details">
         <div class="popover-title" id="popover-display-name">Display Name</div>
         <div class="popover-handle" id="popover-username">@username</div>
@@ -881,6 +859,7 @@
     <label for="edit-avatar-url">Avatar Image URL</label>
     <input id="edit-avatar-url" placeholder="https://example.com/avatar.png">
 
+    <!-- DIRECT AVATAR FILE UPLOAD OPTION -->
     <input type="file" id="avatar-file-input" accept="image/*,.gif" class="hidden">
     <button type="button" class="btn secondary full" id="upload-avatar-btn" style="margin-top:6px;">Upload Profile Picture</button>
     
@@ -929,6 +908,7 @@
   </div>
 </div>
 
+<!-- IN-APP MOBILE TOAST POPUP -->
 <div id="mobile-toast"></div>
 
 <footer class="win7-taskbar">
@@ -951,6 +931,12 @@
   </div>
 </footer>
 
+<div class="status-menu" id="status-menu">
+  <button type="button" data-status="online"><img src="online.png" alt="">Online</button>
+  <button type="button" data-status="dnd"><img src="dnd.png" alt="">DND</button>
+  <button type="button" data-status="idle"><img src="idle.png" alt="">Idle</button>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 (() => {
@@ -960,6 +946,7 @@
   const SUPABASE_PUBLISHABLE_KEY = "__SUPABASE_ANON_KEY__";
   const AUTH_DOMAIN = "apbn.local";
 
+  // Insert your ImgBB API Key below (from https://api.imgbb.com/)
   const IMGBB_API_KEY = "d895a576a810d43ebf43d08d566f48a9";
 
   const { createClient } = window.supabase;
@@ -977,12 +964,8 @@
 
   let currentUser = null;
   let currentProfile = null;
-  
-  let userStatus = localStorage.getItem("apbn_user_status") || "Online";
-  
   let replyTo = null;
   let realtimeChannel = null;
-  let profileRealtimeChannel = null;
   let popoverTimeout = null;
   let activeTarget = null;
   let initialMessagesLoaded = false;
@@ -990,6 +973,7 @@
 
   const usernameRegex = /^[A-Za-z]+@[0-9]+$/;
 
+  // Mobile Side Panel Controls
   const sidebarEl = $("sidebar");
   const mobileProfileToggleBtn = $("mobile-profile-toggle");
   const mobileOverlayEl = $("mobile-overlay");
@@ -1009,41 +993,9 @@
     toggleMobileSidebar(false);
   };
 
-  function getStatusImage(status) {
-    const s = (status || "Online").toLowerCase();
-    if (s === "dnd") return "dnd.png";
-    if (s === "idle") return "idle.png";
-    if (s === "offline") return "offline.png";
-    return "online.png";
-  }
-
-  const userStatusSelect = $("user-status-select");
-  if (userStatusSelect) {
-    userStatusSelect.value = userStatus;
-    userStatusSelect.addEventListener("change", async (e) => {
-      userStatus = e.target.value;
-      localStorage.setItem("apbn_user_status", userStatus);
-      
-      const sidebarBadge = $("sidebar-status-badge");
-      if (sidebarBadge) sidebarBadge.src = getStatusImage(userStatus);
-      
-      if (currentProfile) {
-        currentProfile.status = userStatus;
-        try {
-          await sb.from("profiles")
-            .update({ status: userStatus })
-            .eq("id", currentUser.id);
-        } catch (err) {
-          console.warn("Could not save status to Supabase:", err);
-        }
-      }
-    });
-  }
-
+  // Audio Synthesizer Beep
   let audioCtx = null;
   function playNotificationBeep() {
-    if (userStatus === "DND") return;
-
     try {
       const AudioCtx = window.AudioContext || window.webkitAudioContext;
       if (!AudioCtx) return;
@@ -1066,8 +1018,8 @@
     }
   }
 
+  // Mobile In-App Toast Alert Fallback
   function showInAppToast(sender, text) {
-    if (userStatus === "DND") return;
     const toast = $("mobile-toast");
     if (!toast) return;
     toast.innerHTML = `<strong>${escapeHTML(sender)}</strong><br>${escapeHTML(text)}`;
@@ -1078,6 +1030,7 @@
     }, 4500);
   }
 
+  // Register Service Worker (sw.js)
   async function registerServiceWorker() {
     if (!('serviceWorker' in navigator)) return;
     try {
@@ -1097,6 +1050,7 @@
     });
   }
 
+  // Taskbar Clock
   function updateTaskbarClock() {
     const now = new Date();
     const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -1199,16 +1153,6 @@
         }
       }
     };
-
-    document.querySelectorAll(".xp-titlebar .btn-max").forEach(btn => {
-      btn.onclick = () => {
-        const card = btn.closest(".card");
-        if (card) {
-          card.classList.toggle("is-fullscreen");
-        }
-      };
-    });
-
     $("win-close").onclick = () => logout();
   }
   setupWindowControls();
@@ -1311,35 +1255,42 @@
     return clean.trim();
   }
 
+  // EXTENDED TEXT FORMATTER WITH YOUTUBE, SPOTIFY, CATBOX, MYINSTANTS & IMAGE EMBEDS
   function formatText(s) {
     let safe = escapeHTML(s);
     
+    // Auto-detect and embed Youtube links
     const youtubeRegex = /https?:\/\/(?:www\.|m\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})[^\s]*/gi;
     safe = safe.replace(youtubeRegex, (match, videoId) => {
       return `<br><iframe class="chat-embed-media" height="240" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
     });
 
+    // Auto-detect and embed Spotify links
     const spotifyRegex = /https?:\/\/open\.spotify\.com\/(track|album|playlist|episode)\/([a-zA-Z0-9]+)[^\s]*/gi;
     safe = safe.replace(spotifyRegex, (match, type, id) => {
       return `<br><iframe class="chat-embed-media" src="https://open.spotify.com/embed/${type}/${id}" height="152" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`;
     });
 
+    // Auto-detect files.catbox.moe links and replace with MSN Engraved Download Button
     const catboxRegex = /(https?:\/\/files\.catbox\.moe\/[a-zA-Z0-9._-]+)/gi;
     safe = safe.replace(catboxRegex, (match) => {
       return `<br><a href="${match}" target="_blank" rel="noopener noreferrer" class="msn-engraved-btn"><span class="msn-icon-dl"></span><span>Download</span></a>`;
     });
 
+    // Auto-detect and embed MyInstants links
     const myinstantsRegex = /https?:\/\/(?:www\.)?myinstants\.com\/(?:[a-z]{2}\/)?instant\/([a-zA-Z0-9-]+)\/?[^\s]*/gi;
     safe = safe.replace(myinstantsRegex, (match, instantSlug) => {
       const embedUrl = `https://www.myinstants.com/instant/${instantSlug}/embed/`;
       return `<br><iframe class="chat-embed-instant" width="110" height="200" src="${embedUrl}" frameborder="0" scrolling="no"></iframe>`;
     });
 
+    // Auto-detect and render direct image or GIF links (including ibb.co or i.ibb.co images)
     const imageRegex = /(https?:\/\/[^\s]+?\.(?:png|jpe?g|gif|webp|bmp))/gi;
     safe = safe.replace(imageRegex, (match) => {
       return `<br><a href="${match}" target="_blank" rel="noopener noreferrer"><img src="${match}" class="chat-embed-image" alt="Uploaded Image" loading="lazy"></a>`;
     });
 
+    // Detect @mentions
     safe = safe.replace(/(^|[\s])(@[A-Za-z]+@[0-9]+)\b/g, '$1<span class="mention">$2</span>');
     return safe;
   }
@@ -1359,6 +1310,7 @@
   $("show-signup").onclick = () => switchAuth("signup");
   $("show-login").onclick = () => switchAuth("login");
 
+  // IMGBB.COM UPLOADER FUNCTION FOR CHAT COMPOSER
   const imgbbFileInput = $("imgbb-file-input");
   const uploadImageBtn = $("upload-image-btn");
 
@@ -1383,6 +1335,7 @@
       const formData = new FormData();
       formData.append("image", file);
 
+      // Call ImgBB official API v1 upload endpoint directly
       const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
         method: "POST",
         body: formData
@@ -1395,8 +1348,10 @@
         throw new Error(json.error?.message || "Invalid upload response from ImgBB.");
       }
 
+      // ImgBB returns the image link in json.data.url or json.data.display_url
       const fileUrl = json.data.url;
 
+      // Append image link to message box
       input.value = input.value ? `${input.value}\n${fileUrl}` : fileUrl;
       input.focus();
     } catch (err) {
@@ -1408,6 +1363,7 @@
     }
   };
 
+  // IMGBB.COM UPLOADER FUNCTION FOR AVATAR/PROFILE PICTURE
   const avatarFileInput = $("avatar-file-input");
   const uploadAvatarBtn = $("upload-avatar-btn");
 
@@ -1444,6 +1400,7 @@
         throw new Error(json.error?.message || "Invalid upload response from ImgBB.");
       }
 
+      // Populate avatar URL input field with uploaded ImgBB URL
       $("edit-avatar-url").value = json.data.url;
     } catch (err) {
       alert("Failed to upload avatar to ImgBB: " + err.message);
@@ -1454,6 +1411,159 @@
     }
   };
 
+  // ===== PRESENCE / STATUS =====
+  const STATUS_KEY = "apbn_presence_status";
+  const STATUS_META = {
+    online:  { label: "Online", icon: "online.png" },
+    dnd:     { label: "DND",    icon: "dnd.png" },
+    idle:    { label: "Idle",   icon: "idle.png" },
+    offline: { label: "Offline", icon: "offline.png" }
+  };
+  const DND_NOTE = "Do Not Disturb is on. Notifications and sounds are muted.";
+  let presenceChannel = null;
+  let presenceMap = {};
+
+  function statusStorageKey() {
+    return STATUS_KEY + (currentUser ? ":" + currentUser.id : "");
+  }
+  function getMyStatus() {
+    try {
+      const s = localStorage.getItem(statusStorageKey());
+      if (s === "online" || s === "dnd" || s === "idle") return s;
+    } catch (e) {}
+    return "online";
+  }
+  function isDnd() { return getMyStatus() === "dnd"; }
+  function statusOf(uid) {
+    if (currentUser && uid === currentUser.id) return getMyStatus();
+    return presenceMap[uid] || "offline";
+  }
+
+  function applyPresenceBadges() {
+    document.querySelectorAll(".avatar-wrap[data-uid]").forEach(wrap => {
+      const badge = wrap.querySelector(".status-badge");
+      if (!badge) return;
+      const s = statusOf(wrap.dataset.uid);
+      const icon = STATUS_META[s].icon;
+      if (badge.getAttribute("src") !== icon) badge.setAttribute("src", icon);
+      badge.alt = STATUS_META[s].label;
+    });
+  }
+
+  function applyDndNotificationUI() {
+    const dnd = isDnd();
+    const toggle = $("notification-toggle");
+    const testBtn = $("test-notification-btn");
+    const msg = $("notification-status-msg");
+    if (!toggle || !testBtn || !msg) return;
+    toggle.disabled = dnd;
+    testBtn.disabled = dnd;
+    toggle.closest(".settings-row")?.classList.toggle("notif-disabled", dnd);
+    testBtn.classList.toggle("notif-disabled", dnd);
+    if (dnd) {
+      if (msg.textContent !== DND_NOTE) msg.dataset.prev = msg.textContent;
+      msg.textContent = DND_NOTE;
+    } else if (msg.textContent === DND_NOTE) {
+      msg.textContent = msg.dataset.prev || "Receive alerts when new squad messages arrive.";
+    }
+  }
+
+  function updateMyStatusUI() {
+    const s = getMyStatus();
+    const meta = STATUS_META[s];
+    $("status-select-icon").src = meta.icon;
+    $("status-select-label").textContent = meta.label;
+    $("toolbar-status-icon").src = meta.icon;
+    $("toolbar-status-label").textContent = meta.label;
+    $("sidebar-avatar-wrap").dataset.uid = currentUser ? currentUser.id : "";
+    document.querySelectorAll("#status-menu button").forEach(b => {
+      b.classList.toggle("active", b.dataset.status === s);
+    });
+    applyPresenceBadges();
+    applyDndNotificationUI();
+  }
+
+  function setMyStatus(s) {
+    try { localStorage.setItem(statusStorageKey(), s); } catch (e) {}
+    updateMyStatusUI();
+    if (presenceChannel && presenceChannel.state === "joined") {
+      presenceChannel.track({ status: s, at: Date.now() }).catch(() => {});
+    }
+  }
+
+  function stopPresence() {
+    if (presenceChannel) {
+      const ch = presenceChannel;
+      presenceChannel = null;
+      try { ch.untrack(); } catch (e) {}
+      sb.removeChannel(ch);
+    }
+    presenceMap = {};
+    applyPresenceBadges();
+  }
+
+  function startPresence() {
+    if (!currentUser) return;
+    stopPresence();
+    const ch = sb.channel("apbn-presence", { config: { presence: { key: currentUser.id } } });
+    ch.on("presence", { event: "sync" }, () => {
+      const state = ch.presenceState();
+      const next = {};
+      Object.keys(state).forEach(uid => {
+        const metas = state[uid] || [];
+        if (!metas.length) return;
+        const latest = metas.reduce((a, b) => ((b.at || 0) >= (a.at || 0) ? b : a));
+        next[uid] = (latest.status === "dnd" || latest.status === "idle") ? latest.status : "online";
+      });
+      presenceMap = next;
+      applyPresenceBadges();
+    });
+    ch.subscribe(async (st) => {
+      if (st === "SUBSCRIBED") {
+        try { await ch.track({ status: getMyStatus(), at: Date.now() }); }
+        catch (e) { console.warn("Presence track failed:", e); }
+      }
+    });
+    presenceChannel = ch;
+  }
+
+  // Status dropdown (profile bar)
+  const statusMenuEl = $("status-menu");
+  const statusBtnEl = $("status-select-btn");
+  function closeStatusMenu() { statusMenuEl.classList.remove("show"); }
+
+  statusBtnEl.addEventListener("click", (e) => {
+    e.stopPropagation();
+    if (statusMenuEl.classList.contains("show")) { closeStatusMenu(); return; }
+    hidePopover();
+    statusMenuEl.classList.add("show");
+    const r = statusBtnEl.getBoundingClientRect();
+    const mh = statusMenuEl.offsetHeight, mw = statusMenuEl.offsetWidth;
+    let top = r.bottom + 4;
+    if (top + mh > window.innerHeight - 48) top = r.top - mh - 4;
+    const left = Math.min(r.left, window.innerWidth - mw - 8);
+    statusMenuEl.style.top = Math.max(8, top) + "px";
+    statusMenuEl.style.left = Math.max(8, left) + "px";
+  });
+
+  statusMenuEl.querySelectorAll("button[data-status]").forEach(b => {
+    b.addEventListener("click", (e) => {
+      e.stopPropagation();
+      setMyStatus(b.dataset.status);
+      closeStatusMenu();
+    });
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!statusMenuEl.contains(e.target)) closeStatusMenu();
+  });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeStatusMenu(); });
+  window.addEventListener("resize", closeStatusMenu);
+  window.addEventListener("pagehide", () => {
+    if (presenceChannel) { try { presenceChannel.untrack(); } catch (e) {} }
+  });
+
+  // Universal Mobile & Desktop Notification Manager
   function initNotificationSettings() {
     const toggle = $("notification-toggle");
     const statusMsg = $("notification-status-msg");
@@ -1532,8 +1642,7 @@
   }
 
   async function triggerBrowserNotification(senderName, messageText, forceShow = false) {
-    if (userStatus === "DND") return;
-
+    if (isDnd()) return; // Do Not Disturb: no sound, no notification, no toast
     playNotificationBeep();
 
     const isEnabled = localStorage.getItem("apbn_notifications_enabled") !== "false";
@@ -1729,12 +1838,12 @@
     const bio = profileData.bio || "No bio added yet.";
     const isAdmin = profileData.role === "admin";
     const isSelf = profileData.id === currentUser?.id;
-    const st = isSelf ? userStatus : (profileData.status || "Online");
 
     $("popover-display-name").textContent = displayName;
     $("popover-username").textContent = "@" + (profileData.username || "user");
     $("popover-avatar").src = avatar;
-    $("popover-status-badge").src = getStatusImage(st);
+    $("popover-avatar-wrap").dataset.uid = profileData.id || "";
+    applyPresenceBadges();
     $("popover-bio").textContent = bio;
 
     const badgeEl = $("popover-badge");
@@ -1797,7 +1906,7 @@
     $("save-profile-btn").disabled = true;
     try {
       const { error } = await sb.from("profiles")
-        .update({ display_name: displayName, avatar_url: avatarUrl, bio: bio, status: userStatus })
+        .update({ display_name: displayName, avatar_url: avatarUrl, bio: bio })
         .eq("id", currentUser.id);
 
       if (error) throw error;
@@ -1823,16 +1932,6 @@
       throw new Error("This account has been banned from the portal.");
     }
 
-    if (currentProfile.status) {
-      userStatus = currentProfile.status;
-      localStorage.setItem("apbn_user_status", userStatus);
-    } else {
-      sb.from("profiles").update({ status: userStatus }).eq("id", currentUser.id).then();
-    }
-
-    const userStatusSelect = $("user-status-select");
-    if (userStatusSelect) userStatusSelect.value = userStatus;
-
     const displayName = currentProfile.display_name || currentProfile.username;
     const avatar = currentProfile.avatar_url || "group-logo.png";
     const isAdmin = currentProfile.role === "admin";
@@ -1840,7 +1939,6 @@
     $("who").textContent = displayName;
     $("subwho").textContent = "@" + currentProfile.username;
     $("sidebar-avatar").src = avatar;
-    $("sidebar-status-badge").src = getStatusImage(userStatus);
     $("mobile-profile-toggle").src = avatar;
 
     $("admin-btn").classList.toggle("hidden", !isAdmin);
@@ -1852,6 +1950,8 @@
       authScreen.classList.add("hidden");
       app.classList.remove("hidden");
       initNotificationSettings();
+      updateMyStatusUI();
+      startPresence();
       await loadMessages();
       initialMessagesLoaded = true;
       subscribeRealtime();
@@ -1869,7 +1969,7 @@
     const { data, error } = await sb.from("messages")
       .select(`
         id, user_id, content, created_at, deleted, reply_to,
-        profiles:user_id(id, username, display_name, avatar_url, bio, role, status)
+        profiles:user_id(id, username, display_name, avatar_url, bio, role)
       `)
       .order("created_at", { ascending: true });
 
@@ -1901,9 +2001,6 @@
       const avatar = profile.avatar_url || "group-logo.png";
       const isAdmin = profile.role === "admin";
       const reply = row.reply_to ? byId.get(row.reply_to) : null;
-      
-      const st = (row.user_id === currentUser.id) ? userStatus : (profile.status || "Online");
-      const statusBadgeImg = getStatusImage(st);
 
       let replyHTML = "";
       if (reply) {
@@ -1913,10 +2010,7 @@
       }
 
       article.innerHTML = `
-        <div class="avatar-container">
-          <img class="msg-avatar" src="${escapeHTML(avatar)}" alt="">
-          <img class="status-badge" src="${statusBadgeImg}" alt="Status">
-        </div>
+        <span class="avatar-wrap" data-uid="${escapeHTML(String(row.user_id))}"><img class="msg-avatar" src="${escapeHTML(avatar)}" alt=""><img class="status-badge" src="${STATUS_META[statusOf(row.user_id)].icon}" alt=""></span>
         <div class="msg-content-wrap">
           <div class="msg-head">
             <span class="user-clickable">${escapeHTML(displayName)}</span>
@@ -2009,7 +2103,6 @@
 
   function subscribeRealtime() {
     if (realtimeChannel) sb.removeChannel(realtimeChannel);
-    if (profileRealtimeChannel) sb.removeChannel(profileRealtimeChannel);
 
     realtimeChannel = sb.channel("apbn-message-feed")
       .on("postgres_changes", {
@@ -2039,14 +2132,6 @@
         table: "messages"
       }, () => loadMessages())
       .subscribe();
-
-    profileRealtimeChannel = sb.channel("apbn-profile-feed")
-      .on("postgres_changes", {
-        event: "UPDATE",
-        schema: "public",
-        table: "profiles"
-      }, () => loadMessages())
-      .subscribe();
   }
 
   async function logout() {
@@ -2054,10 +2139,7 @@
       await sb.removeChannel(realtimeChannel);
       realtimeChannel = null;
     }
-    if (profileRealtimeChannel) {
-      await sb.removeChannel(profileRealtimeChannel);
-      profileRealtimeChannel = null;
-    }
+    stopPresence();
     $("settings-modal").classList.add("hidden");
     await sb.auth.signOut();
   }
@@ -2075,33 +2157,113 @@
     }
   }
 
+  async function openAdmin() {
+    $("admin-modal").classList.remove("hidden");
+    await loadAdminUsers();
+  }
+
+  async function loadAdminUsers() {
+    const list = $("admin-list");
+    list.textContent = "Loading…";
+    const { data, error } = await sb.from("profiles")
+      .select("id,username,display_name,role,banned,ban_reason,created_at")
+      .order("created_at", { ascending: true });
+
+    if (error) {
+      list.textContent = error.message;
+      return;
+    }
+
+    list.innerHTML = "";
+    data.forEach(p => {
+      const row = document.createElement("div");
+      row.className = "admin-row";
+      const name = p.display_name || p.username;
+      row.innerHTML = `
+        <div>
+          <strong>${escapeHTML(name)}</strong> <small>(@${escapeHTML(p.username)})</small>
+          <span class="role-badge ${p.role === "admin" ? "admin" : "member"}">${p.role}</span>
+          ${p.banned ? '<span class="role-badge" style="background:#ffcdd2;color:#b71c1c">BANNED</span>' : ''}
+        </div>
+        <button class="tiny ban-toggle">${p.banned ? "Unban" : "Ban"}</button>
+      `;
+
+      row.querySelector(".ban-toggle").onclick = async () => {
+        if (p.id === currentUser.id) {
+          alert("Do not ban your own admin account.");
+          return;
+        }
+        let reason = "";
+        if (!p.banned) {
+          reason = prompt("Ban reason (optional):", "Violation of APBn portal rules") || "";
+        }
+        const { error } = await sb.from("profiles")
+          .update({ banned: !p.banned, ban_reason: p.banned ? null : reason })
+          .eq("id", p.id);
+        if (error) alert(error.message);
+        else loadAdminUsers();
+      };
+
+      list.appendChild(row);
+    });
+  }
+
   $("login-btn").onclick = login;
   $("signup-btn").onclick = createAccount;
   $("send-btn").onclick = sendMessage;
-
-  input.onkeydown = (e) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      sendMessage();
-    }
-  };
-
+  $("admin-btn").onclick = openAdmin;
   $("settings-toolbar").onclick = () => $("settings-modal").classList.remove("hidden");
   $("close-settings-btn").onclick = () => $("settings-modal").classList.add("hidden");
   $("settings-logout-btn").onclick = logout;
   $("delete-account-btn").onclick = deleteAccount;
+  $("close-admin").onclick = () => $("admin-modal").classList.add("hidden");
 
-  sb.auth.onAuthStateChange((event, session) => {
-    currentUser = session?.user || null;
-    if (currentUser) {
-      enterApp();
-    } else {
-      authScreen.classList.remove("hidden");
-      app.classList.add("hidden");
-      clearStatus();
+  // UPDATED KEYDOWN LISTENER: Enter always inserts new line on mobile/touch screens
+  input.addEventListener("keydown", e => {
+    const isMobile = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+    if (e.key === "Enter") {
+      if (isMobile) {
+        // Allow default behavior (adds newline) on touch/mobile devices
+        return;
+      } else {
+        // Desktop PC behavior: Shift+Enter = new line, Enter alone = send
+        if (!e.shiftKey) {
+          e.preventDefault();
+          sendMessage();
+        }
+      }
     }
   });
 
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible" && currentUser && initialMessagesLoaded) {
+      if (!realtimeChannel || realtimeChannel.state !== "joined") subscribeRealtime();
+      if (!presenceChannel || presenceChannel.state !== "joined") startPresence();
+      loadMessages();
+    }
+  });
+
+  sb.auth.onAuthStateChange(async (event, session) => {
+    currentUser = session?.user || null;
+    if (currentUser) {
+      await enterApp();
+    } else {
+      stopPresence();
+      currentProfile = null;
+      app.classList.add("hidden");
+      authScreen.classList.remove("hidden");
+      switchAuth("login");
+    }
+  });
+
+  (async () => {
+    const { data: { session } } = await sb.auth.getSession();
+    if (session) {
+      currentUser = session.user;
+      await enterApp();
+    }
+  })();
 })();
 </script>
 </body>
