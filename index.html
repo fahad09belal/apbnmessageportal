@@ -978,7 +978,6 @@
   let currentUser = null;
   let currentProfile = null;
   
-  // PERSISTENCE FIX 1: Read status from localStorage fallback, defaulting to "Online"
   let userStatus = localStorage.getItem("apbn_user_status") || "Online";
   
   let replyTo = null;
@@ -1018,7 +1017,6 @@
     return "online.png";
   }
 
-  // PERSISTENCE FIX 2: Handle status changes and persist to localStorage + Supabase DB
   const userStatusSelect = $("user-status-select");
   if (userStatusSelect) {
     userStatusSelect.value = userStatus;
@@ -1201,6 +1199,16 @@
         }
       }
     };
+
+    document.querySelectorAll(".xp-titlebar .btn-max").forEach(btn => {
+      btn.onclick = () => {
+        const card = btn.closest(".card");
+        if (card) {
+          card.classList.toggle("is-fullscreen");
+        }
+      };
+    });
+
     $("win-close").onclick = () => logout();
   }
   setupWindowControls();
@@ -1804,7 +1812,6 @@
     }
   };
 
-  // PERSISTENCE FIX 3: Fetch saved status from DB on profile load & sync UI selector
   async function loadProfile() {
     const { data, error } = await sb.from("profiles")
       .select("*").eq("id", currentUser.id).single();
@@ -1816,12 +1823,10 @@
       throw new Error("This account has been banned from the portal.");
     }
 
-    // Restore persisted status from DB if present
     if (currentProfile.status) {
       userStatus = currentProfile.status;
       localStorage.setItem("apbn_user_status", userStatus);
     } else {
-      // Initialize DB with local status if unset
       sb.from("profiles").update({ status: userStatus }).eq("id", currentUser.id).then();
     }
 
@@ -1882,7 +1887,6 @@
     renderMessages(data);
   }
 
-  // PERSISTENCE FIX 4: Render exact status badges for both current user and squad members
   function renderMessages(rows) {
     messagesEl.innerHTML = "";
     const byId = new Map(rows.map(r => [r.id, r]));
@@ -2003,7 +2007,6 @@
     if (error) alert(error.message);
   }
 
-  // PERSISTENCE FIX 5: Real-time subscription to profile status changes across users
   function subscribeRealtime() {
     if (realtimeChannel) sb.removeChannel(realtimeChannel);
     if (profileRealtimeChannel) sb.removeChannel(profileRealtimeChannel);
