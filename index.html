@@ -1881,7 +1881,7 @@
     $("popover-avatar-wrap").dataset.uid = profileData.id || "";
     applyPresenceBadges();
     $("popover-bio").textContent = bio;
-    updateNowPlaying(profileData);
+    $("popover-nowplaying").style.display = "none";
 
     const badgeEl = $("popover-badge");
     badgeEl.className = "role-badge " + (isAdmin ? "admin" : "member");
@@ -1913,6 +1913,7 @@
     popover.style.left = `${left}px`;
 
     popover.classList.add("show");
+    updateNowPlaying(profileData);
   }
 
   function attachChatUserEvents(element, profileData) {
@@ -1980,7 +1981,7 @@
       }
 
       const popover = $("profile-popover");
-      if (!track || popover.style.display === "none" || $("popover-avatar-wrap").dataset.uid !== uid) return;
+      if (!track || !popover.classList.contains("show") || $("popover-avatar-wrap").dataset.uid !== uid) return;
 
       $("np-track").textContent = track.name;
       $("np-track").title = track.name;
