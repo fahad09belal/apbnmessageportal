@@ -1388,7 +1388,7 @@
   $("login-btn").onclick = login;
   $("send-btn").onclick = sendMessage;
 
-  input.addEventListener("keydown", (e) => {
+ input.addEventListener("keydown", (e) => {
     // Only send on Enter without Shift if NOT on a mobile screen/device
     const isMobile = window.matchMedia("(max-width: 768px)").matches;
     if (e.key === "Enter" && !e.shiftKey && !isMobile) {
