@@ -190,6 +190,16 @@
     .popover-handle{font-size:11px;color:#5a6e85}
     .popover-bio{font-size:11px;color:#334455;background:#ffffffa0;padding:6px;border:1px solid #b2c4d6;border-radius:3px;margin-top:4px;white-space:pre-wrap;word-break:break-word}
 
+    .popover-np{display:flex;gap:8px;align-items:center;margin-top:2px;padding:5px;background:linear-gradient(#ffffffd0,#e4effaa0);border:1px solid #b2c4d6;border-radius:3px;box-shadow:inset 0 1px #fff}
+    .np-cover{width:36px;height:36px;flex:0 0 36px;border-radius:3px;border:1px solid #7d96af;object-fit:cover;background:linear-gradient(#fff,#d6e7f8);box-shadow:0 1px 2px #0003}
+    .np-info{flex:1;min-width:0}
+    .np-label{display:flex;align-items:center;gap:4px;font-size:9px;font-weight:bold;text-transform:uppercase;color:#2b6cb0;letter-spacing:.3px}
+    .np-track{font-size:11px;font-weight:bold;color:#0d325c;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .np-artist{font-size:10px;color:#5a6e85;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .np-eq{display:inline-flex;align-items:flex-end;gap:1px;height:8px}
+    .np-eq i{display:block;width:2px;background:#3a8f4f;border-radius:1px;animation:npEq .9s ease-in-out infinite}
+    .np-eq i:nth-child(1){height:4px}.np-eq i:nth-child(2){height:8px;animation-delay:.2s}.np-eq i:nth-child(3){height:5px;animation-delay:.4s}
+    @keyframes npEq{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1)}}
     .role-badge{display:inline-flex;align-items:center;padding:2px 6px;border-radius:10px;font-size:9px;font-weight:bold;text-transform:uppercase;margin-top:3px}
     .role-badge.admin{background:linear-gradient(#ffe082,#f57c00);color:#4a2800;border:1px solid #b35900;text-shadow:0 1px 0 rgba(255,255,255,0.4)}
     .role-badge.member{background:linear-gradient(#e0e0e0,#9e9e9e);color:#212121;border:1px solid #616161}
@@ -844,6 +854,14 @@
       </div>
     </div>
     <div class="popover-bio" id="popover-bio">No bio added yet.</div>
+    <div class="popover-np" id="popover-nowplaying" style="display:none">
+      <img class="np-cover" id="np-cover" alt="">
+      <div class="np-info">
+        <div class="np-label"><span class="np-eq"><i></i><i></i><i></i></span>Now Playing</div>
+        <div class="np-track" id="np-track"></div>
+        <div class="np-artist" id="np-artist"></div>
+      </div>
+    </div>
     <button class="btn full" id="popover-edit-btn" style="margin-top:4px;padding:5px">Edit Profile</button>
   </div>
 </section>
@@ -865,6 +883,14 @@
     
     <label for="edit-bio">Bio</label>
     <textarea id="edit-bio" rows="3" placeholder="Tell the squad about yourself..."></textarea>
+
+    <div id="lastfm-fields" class="hidden">
+      <label for="edit-lastfm-user">Last.fm Username</label>
+      <input id="edit-lastfm-user" placeholder="your last.fm username" autocomplete="off">
+      <label for="edit-lastfm-key">Last.fm API Key</label>
+      <input id="edit-lastfm-key" placeholder="paste your Last.fm API key" autocomplete="off" spellcheck="false">
+      <p class="sub" style="margin:4px 0 0;font-size:10px">Shows what you're scrobbling right now in your profile card. Leave empty to turn off.</p>
+    </div>
     
     <button class="btn full" id="save-profile-btn">Save Changes</button>
     <button class="btn secondary full" id="close-profile-modal" style="margin-top:6px">Cancel</button>
@@ -1855,6 +1881,7 @@
     $("popover-avatar-wrap").dataset.uid = profileData.id || "";
     applyPresenceBadges();
     $("popover-bio").textContent = bio;
+    updateNowPlaying(profileData);
 
     const badgeEl = $("popover-badge");
     badgeEl.className = "role-badge " + (isAdmin ? "admin" : "member");
@@ -1899,10 +1926,92 @@
 
   setupProfileEvents();
 
+  // ---- Last.fm "now playing" (enabled for one account only) ----
+  const LASTFM_OWNER = "prantikog@67";
+  const LASTFM_PLACEHOLDER = "2a96cbd8b46e442fc41c2b86b821562f";
+  const nowPlayingCache = new Map();
+
+  function isLastfmOwner(p) {
+    return !!p && (p.username || "").toLowerCase() === LASTFM_OWNER;
+  }
+
+  async function fetchNowPlaying(user, key) {
+    const url = "https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&limit=1&format=json"
+      + "&user=" + encodeURIComponent(user) + "&api_key=" + encodeURIComponent(key);
+    const res = await fetch(url);
+    const json = await res.json();
+    if (json.error) throw new Error(json.message || "Last.fm error");
+    let t = json.recenttracks && json.recenttracks.track;
+    if (Array.isArray(t)) t = t[0];
+    if (!t || !t["@attr"] || t["@attr"].nowplaying !== "true") return null;
+    const imgs = Array.isArray(t.image) ? t.image : [];
+    const pick = imgs.find(i => i.size === "large") || imgs[imgs.length - 1];
+    let cover = pick && pick["#text"] ? pick["#text"] : "";
+    if (cover.includes(LASTFM_PLACEHOLDER)) cover = "";
+    return {
+      name: t.name || "Unknown track",
+      artist: (t.artist && (t.artist["#text"] || t.artist.name)) || "Unknown artist",
+      cover
+    };
+  }
+
+  async function updateNowPlaying(profileData) {
+    const box = $("popover-nowplaying");
+    box.style.display = "none";
+    if (!isLastfmOwner(profileData) || !profileData.id) return;
+    const uid = String(profileData.id);
+
+    try {
+      let track;
+      const cached = nowPlayingCache.get(uid);
+      if (cached && Date.now() - cached.t < 15000) {
+        track = cached.track;
+      } else {
+        let creds = profileData.id === currentUser?.id ? currentProfile : null;
+        if (!creds || creds.lastfm_user === undefined) {
+          const { data, error } = await sb.from("profiles")
+            .select("lastfm_user, lastfm_key").eq("id", profileData.id).maybeSingle();
+          if (error) throw error;
+          creds = data;
+        }
+        if (!creds || !creds.lastfm_user || !creds.lastfm_key) return;
+        track = await fetchNowPlaying(creds.lastfm_user, creds.lastfm_key);
+        nowPlayingCache.set(uid, { t: Date.now(), track });
+      }
+
+      const popover = $("profile-popover");
+      if (!track || popover.style.display === "none" || $("popover-avatar-wrap").dataset.uid !== uid) return;
+
+      $("np-track").textContent = track.name;
+      $("np-track").title = track.name;
+      $("np-artist").textContent = track.artist;
+      $("np-artist").title = track.artist;
+      const cover = $("np-cover");
+      cover.onerror = () => { cover.removeAttribute("src"); };
+      if (track.cover) cover.src = track.cover; else cover.removeAttribute("src");
+      box.style.display = "flex";
+
+      // keep the grown popover inside the viewport
+      const r = popover.getBoundingClientRect();
+      const maxBottom = window.innerHeight - 12;
+      if (r.bottom > maxBottom) {
+        popover.style.top = Math.max(10, r.top - (r.bottom - maxBottom)) + "px";
+      }
+    } catch (e) {
+      console.warn("Last.fm now playing failed:", e);
+    }
+  }
+
   function openEditProfileModal() {
     $("edit-display-name").value = currentProfile.display_name || currentProfile.username;
     $("edit-avatar-url").value = currentProfile.avatar_url || "";
     $("edit-bio").value = currentProfile.bio || "";
+    const showLastfm = isLastfmOwner(currentProfile);
+    $("lastfm-fields").classList.toggle("hidden", !showLastfm);
+    if (showLastfm) {
+      $("edit-lastfm-user").value = currentProfile.lastfm_user || "";
+      $("edit-lastfm-key").value = currentProfile.lastfm_key || "";
+    }
     $("edit-profile-modal").classList.remove("hidden");
   }
 
@@ -1920,6 +2029,20 @@
         .eq("id", currentUser.id);
 
       if (error) throw error;
+
+      if (isLastfmOwner(currentProfile)) {
+        const { error: lfErr } = await sb.from("profiles")
+          .update({
+            lastfm_user: $("edit-lastfm-user").value.trim() || null,
+            lastfm_key: $("edit-lastfm-key").value.trim() || null
+          })
+          .eq("id", currentUser.id);
+        if (lfErr) {
+          alert("Profile saved, but Last.fm settings failed: " + lfErr.message +
+            "\n\nRun this once in the Supabase SQL editor:\nalter table profiles add column if not exists lastfm_user text, add column if not exists lastfm_key text;");
+        }
+        nowPlayingCache.clear();
+      }
 
       $("edit-profile-modal").classList.add("hidden");
       await loadProfile();
